@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Span: Research & Decisions Infographic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@2.1.0"></script>
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- 
+        Palette: Vibrant Future 
+        Primary: #4361EE (Electric Blue)
+        Secondary: #7209B7 (Deep Purple)
+        Accent: #F72585 (Neon Pink)
+        Highlight: #4CC9F0 (Sky Cyan)
+        Background: #F8F9FA (Off White)
+    -->
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #F8F9FA; color: #1F2937; }
+        
+        .gradient-text {
+            background: linear-gradient(to right, #4361EE, #F72585);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: transform 0.2s, box-shadow 0.2s;
+            overflow: hidden; /* Contains chart overflow */
+        }
+        .card:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); 
+        }
+        
+        /* Chart Container Styling - MANDATORY Responsive Controls */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+        }
+        @media (min-width: 768px) {
+            .chart-container { height: 400px; }
+        }
+
+        /* Source Citation Styling */
+        .chart-source {
+            font-size: 0.7rem;
+            color: #6B7280;
+            margin-top: 0.75rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid #F3F4F6;
+            font-style: italic;
+        }
+        
+        /* ROI Card specific styling */
+        .roi-stat {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+</head>
+<body class="pb-20">
+
+    <!-- Sticky Header -->
+    <header class="bg-white/90 backdrop-blur-sm shadow-sm sticky top-0 z-50 transition-all">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold tracking-tight text-[#4361EE]">SPAN <span class="text-gray-400 font-light">| Research Matrix</span></h1>
+            <nav class="hidden md:flex space-x-6 text-sm font-semibold text-gray-500">
+                <a href="#roi" class="hover:text-[#4361EE] transition-colors">The ROI</a>
+                <a href="#biology" class="hover:text-[#F72585] transition-colors">Biology</a>
+                <a href="#barriers" class="hover:text-[#F72585] transition-colors">Barriers</a>
+                <a href="#ux" class="hover:text-[#F72585] transition-colors">UX Strategy</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 mt-12 space-y-20">
+
+        <!-- Intro Section -->
+        <section class="text-center py-6">
+            <h2 class="text-5xl md:text-6xl font-extrabold mb-6 tracking-tight"><span class="gradient-text">The Mid-Life Prevention Window</span></h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                Visualizing the critical physiological pivot point (Age 35–55). 
+                The following data synthesizes clinical benchmarks to define Span's product requirements.
+            </p>
+        </section>
+
+        <!-- NEW SECTION: THE CLINICAL ROI (Added per request) -->
+        <section id="roi" class="scroll-mt-24">
+            <div class="mb-8 border-l-4 border-[#4CC9F0] pl-4">
+                <h3 class="text-3xl font-bold text-gray-800">The Clinical ROI of Movement</h3>
+                <p class="text-gray-600 mt-2 text-lg">Why invest effort now? The clinical return on investment for mid-life activity is undeniable.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Card 1: Never Too Late -->
+                <div class="card p-6 border-t-4 border-[#4361EE] hover:bg-blue-50/30 transition-colors">
+                    <div class="text-[#4361EE] text-sm font-bold uppercase tracking-wide mb-2">Mortality Risk</div>
+                    <div class="roi-stat text-[#4361EE]">-25%</div>
+                    <h4 class="font-bold text-gray-800 mb-2">The Late Starter Bonus</h4>
+                    <p class="text-sm text-gray-600">Switching from inactive to active in adulthood lowers all-cause mortality risk by up to 25%.</p>
+                </div>
+
+                <!-- Card 2: Every Step Counts -->
+                <div class="card p-6 border-t-4 border-[#F72585] hover:bg-pink-50/30 transition-colors">
+                    <div class="text-[#F72585] text-sm font-bold uppercase tracking-wide mb-2">Micro-Dose Effect</div>
+                    <div class="roi-stat text-[#F72585]">-10%</div>
+                    <h4 class="font-bold text-gray-800 mb-2">Just 5 Minutes</h4>
+                    <p class="text-sm text-gray-600">Adding just 5 extra minutes of moderate activity (like brisk walking) to your day reduces mortality risk by 10%.</p>
+                </div>
+
+                <!-- Card 3: Biological Armor -->
+                <div class="card p-6 border-t-4 border-[#7209B7] hover:bg-purple-50/30 transition-colors">
+                    <div class="text-[#7209B7] text-sm font-bold uppercase tracking-wide mb-2">Disease Defense</div>
+                    <div class="roi-stat text-[#7209B7]">-17%</div>
+                    <h4 class="font-bold text-gray-800 mb-2">Strength as Armor</h4>
+                    <p class="text-sm text-gray-600">Regular muscle-strengthening lowers risks of CVD and cancer by 17%.</p>
+                </div>
+
+                <!-- Card 4: Longevity Bonus -->
+                <div class="card p-6 border-t-4 border-[#4CC9F0] hover:bg-cyan-50/30 transition-colors">
+                    <div class="text-[#4CC9F0] text-sm font-bold uppercase tracking-wide mb-2">Life Expectancy</div>
+                    <div class="roi-stat text-gray-800">+7 <span class="text-2xl">Yrs</span></div>
+                    <h4 class="font-bold text-gray-800 mb-2">The Ultimate ROI</h4>
+                    <p class="text-sm text-gray-600">Regular activity can extend life expectancy by up to 6.9 years.</p>
+                </div>
+            </div>
+            
+            <p class="chart-source text-center mt-6">
+                <strong>Clinical Evidence Base:</strong> Data derived from all-cause mortality studies comparing sedentary vs. active adult populations (e.g., Saint-Maurice et al., 2020; Momma et al., 2022).
+            </p>
+        </section>
+
+        <!-- MODULE 1: THE BIOLOGICAL INTERSECTION -->
+        <section id="biology" class="scroll-mt-24">
+            <div class="mb-8 border-l-4 border-[#4361EE] pl-4">
+                <h3 class="text-3xl font-bold text-gray-800">1. The Biological Intersection</h3>
+                <p class="text-gray-600 mt-2 text-lg">Comparing the trajectory of <strong>declining capacity</strong> against <strong>rising risk</strong>.</p>
+            </div>
+
+            <!-- THE BIG CHART -->
+            <div class="card p-6 md:p-8">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
+                    <div>
+                        <h4 class="text-xl font-bold text-[#4361EE]">Physiological Trajectories (Age 25–75)</h4>
+                        <p class="text-sm text-gray-500">Normalized Scale (0-100%). Solid Lines = Capacity (Left Axis). Dashed Lines = Risk (Right Axis).</p>
+                    </div>
+                    <div class="mt-2 md:mt-0 flex gap-2">
+                        <span class="px-2 py-1 bg-blue-50 text-[#4361EE] text-xs font-bold rounded">Capacity (Decline)</span>
+                        <span class="px-2 py-1 bg-pink-50 text-[#F72585] text-xs font-bold rounded">Risk (Rise)</span>
+                    </div>
+                </div>
+                
+                <div class="chart-container" style="height: 500px;">
+                    <canvas id="intersectionChart"></canvas>
+                </div>
+                
+                <p class="chart-source">
+                    <strong>Sources:</strong> 
+                    VO2 Max: ACSM Guidelines (approx 10% decline/decade). 
+                    Muscle Mass: Walston (2012) Sarcopenia Trajectories (3-8% loss/decade). 
+                    Bone Density: NIH Osteoporosis & Related Bone Diseases (Peak at 30, accelerated loss post-50).
+                    Metabolic Syndrome: CDC National Health Statistics Reports (Prevalence by Age Group).
+                    Joint Pain: CDC Arthritis Related Statistics (Prevalence peaks 45-64).
+                </p>
+            </div>
+        </section>
+
+        <!-- MODULE 2: BARRIERS TO ENTRY -->
+        <section id="barriers" class="scroll-mt-24">
+            <div class="mb-8 border-l-4 border-[#F72585] pl-4">
+                <h3 class="text-3xl font-bold text-gray-800">2. Why the 35–55 Cohort Fails</h3>
+                <p class="text-gray-600 mt-2 text-lg">Standard fitness apps fail this demographic because they ignore the primary constraints: Time Scarcity and Fear of Injury.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <!-- Dropout Drivers -->
+                <div class="card p-6">
+                    <h4 class="text-lg font-bold text-[#F72585] mb-2">Determinants of Dropout</h4>
+                    <p class="text-sm text-gray-500 mb-4">Primary reasons cited for abandoning exercise programs in mid-life adults.</p>
+                    
+                    <div class="chart-container">
+                        <canvas id="dropoutChart"></canvas>
+                    </div>
+                    
+                    <p class="chart-source">
+                        <strong>Source (R17):</strong> Collins G, et al. "Determinants of dropout in gym-based physical activity programs." 
+                        Time constraints consistently cited as #1 factor (approx 45-50%).
+                    </p>
+                </div>
+
+                <!-- Injury Prevalence -->
+                <div class="card p-6">
+                    <h4 class="text-lg font-bold text-[#7209B7] mb-2">"Weekend Warrior" Injury Profile</h4>
+                    <p class="text-sm text-gray-500 mb-4">Most common musculoskeletal complaints in the target demographic.</p>
+                    
+                    <div class="chart-container">
+                        <canvas id="injuryChart"></canvas>
+                    </div>
+                    
+                    <p class="chart-source">
+                        <strong>Source:</strong> Consolidated Sports Medicine Data (AAOS). Lumbar strain and knee pathology represent >50% of non-traumatic complaints in 35-55 age group.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODULE 3: UX & COGNITIVE LOAD -->
+        <section id="ux" class="scroll-mt-24">
+            <div class="mb-8 border-l-4 border-[#7209B7] pl-4">
+                <h3 class="text-3xl font-bold text-gray-800">3. UX & Cognitive Load Benchmarks</h3>
+                <p class="text-gray-600 mt-2 text-lg">Designing for durability requires minimizing friction. We target specific scores on recognized usability scales.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- SUS Score -->
+                <div class="card p-6 col-span-1 md:col-span-2">
+                    <h4 class="text-lg font-bold text-[#4361EE] mb-2">System Usability Scale (SUS) Targets</h4>
+                    <p class="text-sm text-gray-500 mb-4">Standard Industry Average vs. Span's Requirement.</p>
+                    
+                    <div class="chart-container">
+                        <canvas id="susChart"></canvas>
+                    </div>
+                    
+                    <p class="chart-source">
+                        <strong>Source (R18):</strong> Hyzy M, et al. "System Usability Scale benchmarks for digital health applications" (2022). 
+                        General Software Avg: 68. Digital Health Avg: ~72.
+                    </p>
+                </div>
+
+                <!-- Cognitive Load Info -->
+                <div class="card p-6 bg-[#F3F4F6] border-none shadow-inner flex flex-col justify-center">
+                    <h4 class="text-lg font-bold text-gray-800 mb-4">NASA-TLX Goals</h4>
+                    <p class="text-sm text-gray-600 mb-6">The Task Load Index measures the "cost" of using the app. High mental demand correlates with abandonment.</p>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between text-xs font-bold text-gray-500 mb-1">
+                                <span>Mental Demand</span>
+                                <span class="text-[#4361EE]">Target: < 25</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-[#4361EE] h-2 rounded-full" style="width: 25%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs font-bold text-gray-500 mb-1">
+                                <span>Temporal Demand (Rushed?)</span>
+                                <span class="text-[#F72585]">Target: < 15</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-[#F72585] h-2 rounded-full" style="width: 15%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p class="chart-source mt-6">
+                        <strong>Source (R19/R20):</strong> Hart SG. "NASA-TLX Results." Lower scores indicate lower friction.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="mt-20 border-t pt-10 pb-10 text-center text-gray-400 text-xs">
+            <p class="mb-2">&copy; 2024 Span Longevity Project. Internal Requirements Document.</p>
+            <p>Generated based on Span_URD_Research_and_Decision_Matrix_v2.docx</p>
+        </footer>
+
+    </main>
+
+    <!-- SCRIPTS -->
+    <script>
+        // --- 1. Utilities ---
+        Chart.defaults.font.family = "'Inter', sans-serif";
+        Chart.defaults.color = '#6B7280';
+        
+        const commonTooltip = {
+            backgroundColor: 'rgba(17, 24, 39, 0.95)',
+            padding: 12,
+            titleFont: { size: 13, weight: 600 },
+            bodyFont: { size: 12 },
+            cornerRadius: 8,
+            displayColors: true
+        };
+
+        // --- 2. Chart Configurations ---
+
+        // CHART 1: BIOLOGICAL INTERSECTION (Multi-Line, Dual Axis)
+        const ctxBio = document.getElementById('intersectionChart').getContext('2d');
+        new Chart(ctxBio, {
+            type: 'line',
+            data: {
+                labels: ['Age 25', 'Age 35', 'Age 45', 'Age 55', 'Age 65', 'Age 75'],
+                datasets: [
+                    // --- CAPACITY METRICS (Left Axis - Declining) ---
+                    {
+                        label: 'Muscle Mass',
+                        data: [100, 98, 93, 85, 75, 60], // Based on 3-8% decline/decade (R2)
+                        borderColor: '#4361EE', // Blue
+                        backgroundColor: '#4361EE',
+                        borderWidth: 3,
+                        tension: 0.4,
+                        yAxisID: 'y'
+                    },
+                    {
+                        label: 'VO2 Max',
+                        data: [100, 90, 80, 70, 55, 40], // ~10% decline/decade (ACSM)
+                        borderColor: '#4CC9F0', // Cyan
+                        backgroundColor: '#4CC9F0',
+                        borderWidth: 2,
+                        tension: 0.4,
+                        yAxisID: 'y'
+                    },
+                    {
+                        label: 'Bone Density',
+                        data: [100, 100, 98, 88, 75, 65], // Stable then drop (NIH)
+                        borderColor: '#3B82F6', // Darker Blue
+                        backgroundColor: '#3B82F6',
+                        borderWidth: 2,
+                        borderDash: [5, 5],
+                        tension: 0.4,
+                        yAxisID: 'y'
+                    },
+                    // --- RISK METRICS (Right Axis - Rising) ---
+                    {
+                        label: 'Metabolic Syndrome Risk',
+                        data: [5, 10, 18, 30, 45, 55], // NHANES prevalence curve
+                        borderColor: '#F72585', // Pink
+                        backgroundColor: '#F72585',
+                        borderWidth: 3,
+                        tension: 0.4,
+                        yAxisID: 'y1'
+                    },
+                    {
+                        label: 'Joint/Back Pain Prevalence',
+                        data: [15, 25, 35, 45, 50, 55], // CDC Arthritis data
+                        borderColor: '#7209B7', // Purple
+                        backgroundColor: '#7209B7',
+                        borderWidth: 2,
+                        borderDash: [2, 2],
+                        tension: 0.4,
+                        yAxisID: 'y1'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                interaction: { mode: 'index', intersect: false },
+                plugins: {
+                    tooltip: commonTooltip,
+                    legend: { position: 'top', labels: { usePointStyle: true, boxWidth: 8 } }
+                },
+                scales: {
+                    y: {
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        title: { display: true, text: 'Physical Capacity (% of Peak)' },
+                        min: 0, max: 120 // Padding for legend
+                    },
+                    y1: {
+                        type: 'linear',
+                        display: true,
+                        position: 'right',
+                        title: { display: true, text: 'Risk / Prevalence (%)' },
+                        min: 0, max: 100,
+                        grid: { drawOnChartArea: false } // Only show grid for left axis
+                    }
+                }
+            }
+        });
+
+        // CHART 2: DROPOUT DRIVERS (Horizontal Bar)
+        const ctxDrop = document.getElementById('dropoutChart').getContext('2d');
+        new Chart(ctxDrop, {
+            type: 'bar',
+            data: {
+                labels: ['Time Scarcity', 'Pain / Fear of Injury', 'Lack of Motivation', 'Cost / Access', 'Program Complexity'],
+                datasets: [{
+                    label: 'Respondents (%)',
+                    data: [48, 28, 15, 6, 3], // R17 Data
+                    backgroundColor: [
+                        '#4361EE', // Top reason gets Primary Color
+                        '#F72585', // Second reason gets Accent
+                        '#E5E7EB', '#E5E7EB', '#E5E7EB' // Others gray
+                    ],
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: commonTooltip
+                },
+                scales: {
+                    x: { max: 60, grid: { display: false } },
+                    y: { grid: { display: false } }
+                }
+            }
+        });
+
+        // CHART 3: INJURY PREVALENCE (Doughnut)
+        const ctxInj = document.getElementById('injuryChart').getContext('2d');
+        new Chart(ctxInj, {
+            type: 'doughnut',
+            data: {
+                labels: ['Lumbar Spine', 'Knee (Patellar/ACL)', 'Shoulder', 'Ankle/Foot', 'Other'],
+                datasets: [{
+                    data: [35, 25, 20, 10, 10], // AAOS Estimations
+                    backgroundColor: ['#4361EE', '#F72585', '#7209B7', '#4CC9F0', '#E5E7EB'],
+                    borderWidth: 0,
+                    hoverOffset: 10
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '65%',
+                plugins: {
+                    legend: { position: 'right', labels: { boxWidth: 12 } },
+                    tooltip: commonTooltip
+                }
+            }
+        });
+
+        // CHART 4: SUS SCORES (Vertical Bar)
+        const ctxSUS = document.getElementById('susChart').getContext('2d');
+        new Chart(ctxSUS, {
+            type: 'bar',
+            data: {
+                labels: ['Software Industry Avg', 'Digital Health Avg', 'Span Target'],
+                datasets: [{
+                    label: 'SUS Score (0-100)',
+                    data: [68, 72, 85], // R18 Data
+                    backgroundColor: ['#9CA3AF', '#4CC9F0', '#4361EE'],
+                    borderRadius: 8,
+                    barPercentage: 0.6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: commonTooltip,
+                    annotation: {
+                        annotations: {
+                            line1: {
+                                type: 'line',
+                                yMin: 68, yMax: 68,
+                                borderColor: 'rgba(0,0,0,0.3)',
+                                borderDash: [5, 5],
+                                label: { content: 'Avg Threshold', enabled: true, position: 'start' }
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: { beginAtZero: true, max: 100, title: { display: true, text: 'SUS Score' } },
+                    x: { grid: { display: false } }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
